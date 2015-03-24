@@ -1,0 +1,48 @@
+﻿
+<!--<div class="bs-example">
+<form role="form" name="form1">
+  <div class="form-group">
+  	<p>&nbsp;</p>
+      Email
+    <input type="text" placeholder="Enter name"  class="form-control" ng-model="user.mail" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" placeholder="Password" id="exampleInputPassword1" class="form-control" ng-model="user.pass" required>
+  </div>
+     <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label>
+    <input type="password" placeholder="Password" id="Password1" class="form-control" >
+  </div>
+  <button class="btn btn-default" type="submit" ng-click="register(user)" ng-disabled="form1.$invalid">Submit</button>
+  <p ngshow="showMessage" class="ng-hide">{{msgtxt}}</p>
+</form>
+</div>-->
+
+<form name="registerUser">
+   <label for="email">Email</label>
+   <input type="email" id="email" name="email" ng-model="user.email" required/>
+   <span ng-show="registerUser.email.$error.required && registerUser.email.$dirty">required</span>
+   <span ng-show="!registerUser.email.$error.required && registerUser.email.$error.email && registerUser.email.$dirty">invalid email</span>
+       <br />
+  
+       
+       
+       <label for="password">Password</label>
+       <input type="password" id="password" name="password" ng-model="user.password" ng-minlength="4" ng-maxlength="10" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required  />
+   <span ng-show="registerUser.password.$error.required && registerUser.password.$dirty">required</span>
+   <span ng-show="!registerUser.password.$error.required && (registerUser.password.$error.minlength || registerUser.password.$error.maxlength) && registerUser.password.$dirty">Passwords must be between 4 and 10 characters.</span>
+   <span ng-show="!registerUser.password.$error.required && !registerUser.password.$error.minlength && !registerUser.password.$error.maxlength && registerUser.password.$error.pattern && registerUser.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+       <br />
+       
+       
+       <label for="password_c">Confirm Password</label>
+       <input type="password" id="password_c" name="password_c" ng-model="user.password_c" valid-password-c required  />
+   <span ng-show="registerUser.password_c.$error.required && registerUser.password_c.$dirty">Please confirm your password.</span>
+   <span ng-show="!registerUser.password_c.$error.required && registerUser.password_c.$error.noMatch && registerUser.password.$dirty">Passwords do not match.</span>
+       <br />
+       
+   <button type="submit" class="btn" ng-disabled="!registerUser.$valid" onclick="register()">Submit</button>
+    {{msgtxt}}
+	</form>
+   
