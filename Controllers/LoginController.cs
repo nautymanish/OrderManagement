@@ -15,7 +15,7 @@ namespace OrderApplication.Controllers
          [HttpPost]
         public User Post(User logginguser)
         {
-            return new User(); // blank user
+            return new User(logginguser.name, logginguser.pass); // blank user
          }
        
         

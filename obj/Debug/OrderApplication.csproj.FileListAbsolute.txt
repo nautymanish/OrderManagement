@@ -3,7 +3,6 @@ C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\OrderApplication.pdb
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\Antlr3.Runtime.dll
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\BundlerMiddleware.dll
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\BundlerMiddleware.System.Web.dll
-C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\EntityFramework.dll
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\Newtonsoft.Json.dll
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\System.Net.Http.Formatting.dll
@@ -16,7 +15,6 @@ C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\Owin.dll
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\Antlr3.Runtime.pdb
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\System.Web.Http.SelfHost.xml
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\System.Web.Optimization.xml
-C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\EntityFramework.xml
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\Microsoft.Web.Infrastructure.xml
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\Newtonsoft.Json.xml
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\System.Net.Http.Formatting.xml
@@ -25,3 +23,4 @@ C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\System.Web.Http.WebHost.xm
 C:\Users\manish.nautiyal\Desktop\OrderApplication\bin\Microsoft.Owin.xml
 C:\Users\manish.nautiyal\Desktop\OrderApplication\obj\Debug\OrderApplication.dll
 C:\Users\manish.nautiyal\Desktop\OrderApplication\obj\Debug\OrderApplication.pdb
+C:\Users\manish.nautiyal\Desktop\OrderApplication\obj\Debug\OrderApplication.csprojResolveAssemblyReference.cache
