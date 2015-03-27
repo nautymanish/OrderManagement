@@ -13,17 +13,21 @@ namespace OrderApplication.Controllers
         public string name { get; private set; }
         public string pass { get; private set; }
         public string ActivationKey { get; private set; }
-
+        public bool IsActivated { get; set; }
         IEntity IEntity.Collection
         {
             get { return this; }
         }
 
-        public User(string name, string password)
+        public User(string name, string password, string activationKey, bool createKey=false)
         {
             this.name = name;
             this.pass = password;
-            this.ActivationKey = Guid.NewGuid().ToString();
+            if (!createKey)
+                this.ActivationKey = ActivationKey;
+            else
+                this.ActivationKey = Guid.NewGuid().ToString();
+
         }
 
 

@@ -15,7 +15,11 @@ namespace OrderApplication.Controllers
          [HttpPost]
         public User Post(User logginguser)
         {
-            return new User(logginguser.name, logginguser.pass); // blank user
+           var UserDetails=new User(logginguser.name, logginguser.pass, logginguser.ActivationKey);
+           UserRepository userRepository=UserRepository.getUserRepository;
+           bool isValidUser=userRepository.Login(ref logginguser);
+           return UserDetails;
+             //return new User(logginguser.name, logginguser.pass, logginguser.ActivationKey); // blank user
          }
        
         
