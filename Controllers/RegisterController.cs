@@ -6,15 +6,25 @@ using System.Web;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using OrderApplication.Models;
 
 namespace OrderApplication.Controllers
 {
     public class RegisterController : ApiController
     {
         [HttpPost]
-        public HttpResponseMessage Post(User logginguser)
+        public HttpResponseMessage Post(User registerUser)
         {
-            var rtnSuccess = Request.CreateResponse<string>(System.Net.HttpStatusCode.BadRequest, "Something went wrong");
+            HttpResponseMessage rtnSuccess; 
+            var userController = UserRepository.getUserRepository;
+            if (userController.Create(registerUser))
+            {
+                rtnSuccess = Request.CreateResponse<string>(System.Net.HttpStatusCode.OK, "Done");
+            }
+            else
+            {
+                rtnSuccess = Request.CreateResponse<string>(System.Net.HttpStatusCode.NotImplemented, "Something went wrong");
+            }
             return rtnSuccess;
         }
     }

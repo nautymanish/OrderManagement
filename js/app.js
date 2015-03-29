@@ -5,6 +5,7 @@ var app = angular.module('orderApp', ['ngRoute', 'UserValidation']);
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', { templateUrl: 'Views/Login.html', controller: 'loginCtrl' });
     $routeProvider.when('/register', { templateUrl: 'Views/register.html', controller: 'registerCtrl' });
+    $routeProvider.when('/order', { templateUrl: 'Views/list.html', controller: 'ListCtrl' });
     $routeProvider.otherwise({ redirectTo: '/' });
 }]);
 

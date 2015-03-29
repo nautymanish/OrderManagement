@@ -6,10 +6,10 @@ app.factory('loginService',function($http, $location){
             var $promise=$http.post('api/Login',data); //send data to user.php
             $promise.then(function(msg){
                 var uid=msg.data;
-                if(uid.UserName!=null){
+                if(uid.name!=null){
                     
                     scope.msgtxt = 'Success verifed';
-                    $location.path('/home');
+                    $location.path('/order');
                 }	       
                 else  {
                     scope.msgtxt='incorrect information';

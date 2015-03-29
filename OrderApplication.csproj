@@ -100,9 +100,14 @@
   <ItemGroup>
     <Compile Include="App_Start\BunldeConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Models\IEntity.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\User.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Controllers\UserRepository.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -116,6 +121,7 @@
     <Content Include="js\app.js" />
     <Content Include="js\controllers\registerCtrl.js" />
     <Content Include="js\controllers\LoginCtrl.js" />
+    <Content Include="js\controllers\ListControl.js" />
     <Content Include="js\services\registerService.js" />
     <Content Include="js\services\loginService.js" />
     <Content Include="lib\angular\angular-animate.js" />
@@ -394,9 +400,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -412,6 +416,9 @@
     <Content Include="lib\angular\angular.min.js.map" />
     <Content Include="lib\angular\errors.json" />
     <Content Include="lib\angular\version.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -441,7 +448,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

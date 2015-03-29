@@ -21,7 +21,7 @@
 
 <form name="registerUser">
    <label for="email">Email</label>
-   <input type="email" id="email" name="email" ng-model="user.email" required/>
+   <input type="email" id="email" name="email" ng-model="user.UserName" required/>
    <span ng-show="registerUser.email.$error.required && registerUser.email.$dirty">required</span>
    <span ng-show="!registerUser.email.$error.required && registerUser.email.$error.email && registerUser.email.$dirty">invalid email</span>
        <br />
@@ -43,6 +43,6 @@
        <br />
        
    <button type="submit" class="btn" ng-disabled="!registerUser.$valid" ng-click="register(user)">Submit</button>
-    {{msgtxt}}
+    <div ng-show="showMessage" >{{msgtxt}}</div>
 	</form>
    
