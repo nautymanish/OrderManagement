@@ -119,9 +119,13 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="js\app.js" />
+    <Content Include="js\controllers\controller.js" />
+    <Content Include="js\controllers\product.js" />
     <Content Include="js\controllers\registerCtrl.js" />
     <Content Include="js\controllers\LoginCtrl.js" />
     <Content Include="js\controllers\ListControl.js" />
+    <Content Include="js\controllers\shoppingCart.js" />
+    <Content Include="js\controllers\store.js" />
     <Content Include="js\services\registerService.js" />
     <Content Include="js\services\loginService.js" />
     <Content Include="lib\angular\angular-animate.js" />
@@ -392,6 +396,8 @@
     <Content Include="oldindex.html" />
     <Content Include="Views\list.html" />
     <Content Include="Views\Login.html" />
+    <Content Include="Views\shoppingCart.htm" />
+    <Content Include="Views\store.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
