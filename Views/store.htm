@@ -4,12 +4,12 @@
     <tr class="well">
         <td class="tdRight" colspan="4" >
             <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
-                <i class="icon-shopping-cart" />
+                <i class="icon-shopping-cart" />Checkout
                 <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
             </a>
         </td>
     </tr>
-    <tr ng-repeat="product in store.products | orderBy:'name' | filter:search" >
+    <tr ng-repeat="product in store.products | orderBy:'name' " >
        
         <td>
             <a ><b>{{product.name}}</b></a><br />
@@ -26,7 +26,7 @@
     </tr>
     <tr class="well">
         <td class="tdRight" colspan="4">
-            <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+            <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
                 <i class="icon-shopping-cart" />
                 <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
             </a>

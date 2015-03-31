@@ -28,7 +28,7 @@ app.controller('ListCtrl', function ($scope, $location, orderFactory) {
     }
 
     $scope.placeOrder = function () {
-        debugger;
+       
         
         angular.forEach($scope.items, function (value, key) {
             var order =  { UserId: 1, quantity: value.quantity, productId: value.ProductId };
