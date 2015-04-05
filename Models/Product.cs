@@ -10,11 +10,13 @@ namespace OrderApplication.Models
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
-        public Product(int ProductId, string ProductName, double ProductPrice)
+        public int Quantity { get; set; }
+        public Product(int ProductId, string ProductName, double ProductPrice, int Quantity)
         {
             this.ProductId = ProductId;
             this.ProductName = ProductName;
             this.ProductPrice = ProductPrice;
+            this.Quantity = Quantity;
         }
 
     }

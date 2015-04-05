@@ -55,8 +55,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -75,6 +73,9 @@
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\AmazingTodo\bin\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -99,21 +100,22 @@
   <ItemGroup>
     <Compile Include="App_Start\BunldeConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\IEntity.cs" />
-    <Compile Include="Controllers\UserRepository.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderRepository.cs" />
+    <Compile Include="DAL\Dal_Product.cs" />
+    <Compile Include="DAL\DAL_Order.cs" />
+    <Compile Include="DAL\DAL_User.cs" />
+    <Compile Include="Models\IEntity.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\User.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Controllers\UserRepository.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Generated\Database.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -121,8 +123,13 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="js\app.js" />
+    <Content Include="js\controllers\controller.js" />
+    <Content Include="js\controllers\product.js" />
     <Content Include="js\controllers\registerCtrl.js" />
     <Content Include="js\controllers\LoginCtrl.js" />
+    <Content Include="js\controllers\ListControl.js" />
+    <Content Include="js\controllers\shoppingCart.js" />
+    <Content Include="js\controllers\store.js" />
     <Content Include="js\services\registerService.js" />
     <Content Include="js\services\loginService.js" />
     <Content Include="lib\angular\angular-animate.js" />
@@ -393,6 +400,8 @@
     <Content Include="oldindex.html" />
     <Content Include="Views\list.html" />
     <Content Include="Views\Login.html" />
+    <Content Include="Views\shoppingCart.htm" />
+    <Content Include="Views\store.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -420,18 +429,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Generated\PetaPoco.Generator.ttinclude" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Generated\PetaPoco.Core.ttinclude" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Generated\Database.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Database.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -461,7 +458,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -10,22 +10,22 @@ namespace OrderApplication.Controllers
 {
     public class OrderController : ApiController
     {
-        private List<Product> ProductList;
-        public OrderController()
-        {
-            ProductList = new List<Product>();
-            ProductList.AddRange(new Product[]{new Product(1,"Shirt",4), new Product(2,"Skirt",5.0)});
-
-        }
-
+       
         public IEnumerable<Product> GetProducts()
         {
-            return ProductList.AsQueryable();
+            //return ProductList.AsQueryable();
+            return new OrderApplication.DAL.DAL_Product().GetProducts();
         }
         [HttpPost]
-        public HttpResponseMessage PostOrder(Order[] order)
+        public HttpResponseMessage PostOrder(int ID,Product[] orderProducts)
         {
-            return Request.CreateResponse<string>(System.Net.HttpStatusCode.OK, "Done");
+           
+            OrderRepository orderRepo = OrderRepository.getOrderRepository;
+            var result=orderRepo.PlaceOrder(orderProducts,ID);
+            if (result)
+                return Request.CreateResponse<string>(System.Net.HttpStatusCode.OK, "Done");
+            else
+                return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "Issue with order");
         }
 
     }

@@ -12,7 +12,7 @@ namespace OrderApplication.Models
         public int ID { get; set; }
         public string name { get; private set; }
         public string pass { get; private set; }
-        public string ActivationKey { get; private set; }
+        public string activationKey { get; private set; }
         public bool IsActivated { get; set; }
         IEntity IEntity.Collection
         {
@@ -24,9 +24,9 @@ namespace OrderApplication.Models
             this.name = name;
             this.pass = password;
             if (!createKey)
-                this.ActivationKey = ActivationKey;
+                this.activationKey = activationKey;
             else
-                this.ActivationKey = Guid.NewGuid().ToString();
+                this.activationKey = Guid.NewGuid().ToString();
 
         }
 

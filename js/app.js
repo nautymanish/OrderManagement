@@ -1,6 +1,6 @@
 ﻿
 'use strict'
-
+var UserId = '';
 var app = angular.module('orderApp', ['ngRoute', 'UserValidation']);
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', { templateUrl: 'Views/Login.html', controller: 'loginCtrl' });

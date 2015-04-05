@@ -6,6 +6,7 @@ function shoppingCart(cartName) {
     this.clearCart = false;
     this.checkoutParameters = {};
     this.items = [];
+    
 
     // load items from local storage when initializing
     this.loadItems();
@@ -122,38 +123,9 @@ shoppingCart.prototype.addCheckoutParameters = function (serviceName, merchantID
     this.checkoutParameters[serviceName] = new checkoutParameters(serviceName, merchantID, options);
 }
 
-// check out
-shoppingCart.prototype.checkout = function (serviceName, clearCart) {
 
-    // select serviceName if we have to
-    if (serviceName == null) {
-        var p = this.checkoutParameters[Object.keys(this.checkoutParameters)[0]];
-        serviceName = p.serviceName;
-    }
 
-    // sanity
-    if (serviceName == null) {
-        throw "Use the 'addCheckoutParameters' method to define at least one checkout service.";
-    }
 
-    // go to work
-    var parms = this.checkoutParameters[serviceName];
-    if (parms == null) {
-        throw "Cannot get checkout parameters for '" + serviceName + "'.";
-    }
-    switch (parms.serviceName) {
-        case "PayPal":
-            this.checkoutPayPal(parms, clearCart);
-            break;
-        default:
-            throw "Unknown checkout service: " + parms.serviceName;
-    }
-}
-
-shoppingCart.prototype.checkoutPayPal = function (parms, clearCart) {
-
-    
-}
 
 
 // utility methods

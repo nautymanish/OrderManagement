@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -15,10 +16,12 @@ namespace OrderApplication.Controllers
          [HttpPost]
         public User Post(User logginguser)
         {
-           var UserDetails=new User(logginguser.name, logginguser.pass, logginguser.ActivationKey);
+            var UserDetails = new User(logginguser.name, logginguser.pass, logginguser.activationKey);
            UserRepository userRepository=UserRepository.getUserRepository;
-           bool isValidUser=userRepository.Login(ref logginguser);
-           return UserDetails;
+           if (userRepository.Login(ref logginguser))
+               return logginguser;
+           else
+               return null;
              //return new User(logginguser.name, logginguser.pass, logginguser.ActivationKey); // blank user
          }
        

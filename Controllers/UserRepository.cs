@@ -1,10 +1,12 @@
-﻿using System;
+﻿using OrderApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using PetaPoco;
+//using PetaPoco;
+using System.Web;
 
 namespace OrderApplication.Controllers
 {
@@ -14,11 +16,11 @@ namespace OrderApplication.Controllers
         private static UserRepository _instance;
         private static object sync=new object();
         //private OrderContext db = new OrderContext();
-        private readonly Database db;
+      //  private readonly Database db;
         private  UserRepository()
         {
             userRepository = new List<IEntity>();
-            db = new PetaPoco.Database("OrderContext");
+        //    db = new PetaPoco.Database("OrderContext");
         }
         public static  UserRepository getUserRepository {
         get
@@ -34,11 +36,20 @@ namespace OrderApplication.Controllers
 
         public  bool Create(User logginguser)
         {
-            User createUser=new User(logginguser.name, logginguser.pass,logginguser.ActivationKey,true);
-            db.Insert(createUser);
-            SendActivationEmail(ref createUser);
-            //db.Users.Add(createUser);
-            //db.SaveChanges();
+            User createUser = new User(logginguser.name, logginguser.pass, logginguser.activationKey, true);
+            new OrderApplication.DAL.DAL_User().CreateUser(createUser);// email is primary so would be unique else sql would send an error
+            try
+            {
+                SendActivationEmail(ref createUser);
+            }
+            finally
+            {
+                this.userRepository.Add(createUser);
+            }
+                //db.Users.Add(createUser);
+                //db.SaveChanges();
+
+                
             
             return true;
         }
@@ -50,7 +61,7 @@ namespace OrderApplication.Controllers
                 mm.Subject = "Account Activation";
                 string body = "Hello " +user.name + ",";
                 body += "<br /><br />Please click the following link to activate your account";
-                body += "<br /><a href = '" + "www.order.com/index.html?ActivationCode=" + user.ActivationKey + "'>Click here to activate your account.</a>";
+                body += "<br /><a href = '" + "www.order.com/index.html?ActivationCode=" + user.activationKey + "'>Click here to activate your account.</a>";
                 body += "<br /><br />Thanks";
                 mm.Body = body;
                 mm.IsBodyHtml = true;
@@ -67,24 +78,29 @@ namespace OrderApplication.Controllers
 
         internal bool Login(ref User logginguser)
         {
-            User tmpUser;
-            if (!string.IsNullOrEmpty(logginguser.ActivationKey) && logginguser.ActivationKey != Guid.Empty.ToString())
+
+            if (!string.IsNullOrEmpty(logginguser.activationKey) && logginguser.activationKey != Guid.Empty.ToString())
             {
-                tmpUser = db.Query<User>(PetaPoco.Sql.Builder
-                     .Append("SELECT * FROM [User]")
-                                                      .Append("WHERE name=@0", logginguser.name)
-                            .Append("AND pass=@0", logginguser.pass).Append(" AND ActivationKey=@0", logginguser.ActivationKey)
-                        ).Single();
-                //tmpUser = db.Single<User>("select * from User WHERE name=@0 and pass=@1 and ActivationKey=@3", new object[] { logginguser.name, logginguser.pass, logginguser.ActivationKey });
+
+                bool IsLoginSuccess = new DAL.DAL_User().Login(ref logginguser);
+                if (IsLoginSuccess)
+                {
+                    this.userRepository.Add(logginguser);
+                }
+                //HttpContext.Current.Session["UserRepository"] = this.userRepository;
+                return true;
             }
             else
-                tmpUser = db.SingleOrDefault<User>(" WHERE name=@0 and pass=@1 and IsActivated=1 ", logginguser.name,logginguser.pass);
-            return true;
+            {
+               return new DAL.DAL_User().Login(ref logginguser, true);
+            }
+            
+                return false;
         }
 
         public void Dispose()
         {
-            db.Dispose();
+          //  db.Dispose();
         }
     }
 }

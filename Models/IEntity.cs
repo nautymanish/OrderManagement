@@ -9,4 +9,7 @@ namespace OrderApplication.Models
     {
         IEntity Collection { get; }
     }
+
+
+   
 }
